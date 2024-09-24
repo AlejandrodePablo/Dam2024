@@ -13,17 +13,9 @@ class MovieFactory {
                 MovieDataRepository(
                     mockRemoteDataSource = MovieMockRemoteDataSource()
                 )
-            )
+            ),
+            getMovieUseCase = GetMovieUseCase(MovieDataRepository(mockRemoteDataSource = MovieMockRemoteDataSource()))
         )
     }
 
-    fun buildViewModel(movieId: String): MovieViewModel {
-        return MovieViewModel(
-            getMovieUseCase = GetMovieUseCase(
-                MovieDataRepository(
-                    mockRemoteDataSource = MovieMockRemoteDataSource()
-                )
-            )
-        )
-    }
 }

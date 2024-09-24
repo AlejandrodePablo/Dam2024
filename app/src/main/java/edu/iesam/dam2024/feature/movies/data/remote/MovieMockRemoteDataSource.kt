@@ -8,19 +8,20 @@ import edu.iesam.dam2024.feature.movies.domain.Movie
 
 class MovieMockRemoteDataSource {
 
+    private val movies = listOf(
+        Movie("1", "tittle1", "poster1"),
+        Movie("2", "tittle2", "poster2"),
+        Movie("3", "tittle3", "poster3"),
+        Movie(title = "tittle4", poster = "poster4", id = "4")
+    )
+
     fun getMovies(): List<Movie> {
-        return listOf(
-            Movie("1", "tittle1", "poster1"),
-            Movie("2", "tittle2", "poster2"),
-            Movie("3", "tittle3", "poster3"),
-            Movie(tittle = "tittle4", poster = "poster4", id = "4")
-        )
+        return movies
     }
 
     fun getMovie(movieId: String): Movie? {
-        return getMovies().firstOrNull() {
-            //it es un objeto Movie del listado
-            it.id == movieId
+        return movies.firstOrNull() { movie ->
+            movie.id == movieId
         }
     }
 }
