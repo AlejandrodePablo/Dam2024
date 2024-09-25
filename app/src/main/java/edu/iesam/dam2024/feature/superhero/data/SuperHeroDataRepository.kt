@@ -11,4 +11,8 @@ class SuperHeroDataRepository(private val superHeroMockRemoteDataSource: SuperHe
         return superHeroMockRemoteDataSource.getSuperHeroes()
     }
 
+    override fun getSuperHero(superHeroId: String): SuperHero? {
+        return superHeroMockRemoteDataSource.getSuperHero(superHeroId)
+    }
+
 }

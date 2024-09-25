@@ -29,7 +29,7 @@ class MovieActivity : AppCompatActivity() {
         findViewById<LinearLayout>(R.id.layout1).setOnClickListener {
             val movie1: Movie? = viewModel.itemSelected(movies[0].id)
             movie1?.let {
-                Log.d("@dev", "Pelicula seleccioanda: $it.title")
+                Log.d("@dev", "Pelicula seleccioanda: ${it.title}")
             }
         }
 
