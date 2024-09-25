@@ -16,10 +16,10 @@ class SuperHeroActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_superhero)
-        val superHeroes = viewModel.viewCreated()
-        bindData(superHeroes)
 
-        Log.d("dev", superHeroes.toString())
+        val superHeroes = viewModel.viewCreated()
+        Log.d("@dev", superHeroes.toString())
+        bindData(superHeroes)
         viewModel.itemSelected(superHeroes.first().id)
     }
 
