@@ -22,30 +22,34 @@ class MovieDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_detail)
+
+        movieFactory = MovieFactory(this)
+        viewModel = movieFactory.buildMovieDetailViewModel()
+
         getMovieId()?.let { movieId ->
             viewModel.viewCreated(movieId)?.let { movie ->
                 bindData(movie)
             }
         }
-        movieFactory = MovieFactory(this)
-        viewModel = movieFactory.buildMovieDetailViewModel()
     }
+
+    private fun bindData(movie: Movie) {
+        val imageView = findViewById<ImageView>(R.id.poster)
+        Glide
+            .with(imageView)
+            .load(movie.poster)
+            .into(imageView)
+    }
+
 
     private fun getMovieId(): String? {
         return intent.getStringExtra(KEY_MOVIE_ID)
     }
 
-    private fun bindData(movie: Movie) {
-
-        val imageView = findViewById<ImageView>(R.id.poster)
-        Glide
-            .with(this)
-            .load(movie.poster)
-            .into(imageView)
-    }
 
     companion object {
-        const val KEY_MOVIE_ID = "key_movie_id"
+        val KEY_MOVIE_ID = "key_movie_id"
+
 
         fun getIntent(context: Context, movieId: String): Intent {
             val intent = Intent(context, MovieDetailActivity::class.java)
