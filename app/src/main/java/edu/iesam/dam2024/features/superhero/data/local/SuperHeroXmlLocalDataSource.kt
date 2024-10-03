@@ -59,7 +59,7 @@ class SuperHeroXmlLocalDataSource(private val context: Context) {
 //            val biography = gson.fromJson(biographyJson, Biography::class.java)
 //            val work = gson.fromJson(workJson, Work::class.java)
 //            val connections = gson.fromJson(connectionsJson, Connections::class.java)
-//            val images = gson.fromJson(imagesJson, Images::class.java)
+//          val images = gson.fromJson(imagesJson, Image::class.java)
 //
 //            return SuperHero(
 //                id = getString("id", "")!!,
