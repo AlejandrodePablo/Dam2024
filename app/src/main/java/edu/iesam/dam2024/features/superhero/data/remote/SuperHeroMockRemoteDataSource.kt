@@ -3,7 +3,7 @@ package edu.iesam.dam2024.features.superhero.data.remote
 import edu.iesam.dam2024.features.superhero.domain.Appearance
 import edu.iesam.dam2024.features.superhero.domain.Biography
 import edu.iesam.dam2024.features.superhero.domain.Connections
-import edu.iesam.dam2024.features.superhero.domain.Images
+import edu.iesam.dam2024.features.superhero.domain.Image
 import edu.iesam.dam2024.features.superhero.domain.PowerStats
 import edu.iesam.dam2024.features.superhero.domain.SuperHero
 import edu.iesam.dam2024.features.superhero.domain.Work
@@ -48,11 +48,11 @@ class SuperHeroMockRemoteDataSource {
                 groupAffiliation = "Hulk Family; Excelsior (sponsor), Avengers (honorary member); formerly partner of the Hulk, Captain America and Captain Marvel; Teen Brigade; ally of Rom",
                 relatives = "Marlo Chandler-Jones (wife); Polly (aunt); Mrs. Chandler (mother-in-law); Keith Chandler, Ray Chandler, three unidentified others (brothers-in-law); unidentified father (deceased); Jackie Shorr (alleged mother; unconfirmed)"
             ),
-            images = Images(
-                xs = "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/xs/1-a-bomb.jpg",
-                sm = "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/sm/1-a-bomb.jpg",
-                md = "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/1-a-bomb.jpg",
-                lg = "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/lg/1-a-bomb.jpg"
+            image = Image(
+                "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/xs/1-a-bomb.jpg",
+                "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/sm/1-a-bomb.jpg",
+                "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/1-a-bomb.jpg",
+                "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/lg/1-a-bomb.jpg"
             )
         ), SuperHero(
             id = "2",
@@ -91,11 +91,11 @@ class SuperHeroMockRemoteDataSource {
                 groupAffiliation = "Bureau for Paranormal Research and Defense",
                 relatives = "Edith Howard (wife, deceased)"
             ),
-            images = Images(
-                xs = "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/xs/2-abe-sapien.jpg",
-                sm = "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/sm/2-abe-sapien.jpg",
-                md = "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/2-abe-sapien.jpg",
-                lg = "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/lg/2-abe-sapien.jpg"
+            image = Image(
+                "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/xs/2-abe-sapien.jpg",
+                "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/sm/2-abe-sapien.jpg",
+                "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/2-abe-sapien.jpg",
+                "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/lg/2-abe-sapien.jpg"
             )
         )
     )

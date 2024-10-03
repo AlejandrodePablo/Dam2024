@@ -9,51 +9,50 @@ import edu.iesam.dam2024.R
 import edu.iesam.dam2024.features.superhero.data.local.SuperHeroXmlLocalDataSource
 import edu.iesam.dam2024.features.superhero.domain.SuperHero
 
-class SuperHeroActivity : AppCompatActivity() {
+class SuperHeroesActivity : AppCompatActivity() {
 
-    private val superHeroFactory: SuperHeroFactory = SuperHeroFactory()
-    private val viewModel = superHeroFactory.buildViewModel()
+    private lateinit var superHeroFactory: SuperHeroFactory
+    private lateinit var viewModel: SuperHeroesViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_superhero)
+        setContentView(R.layout.activity_superheroes)
+
+        superHeroFactory = SuperHeroFactory(this)
+        viewModel = superHeroFactory.buildViewModel()
 
         val superHeroes = viewModel.viewCreated()
         bindData(superHeroes)
-        viewModel.itemSelected(superHeroes.first().id)
         testXmlList()
     }
 
+    private fun navigateToSuperHeroDetail(superHeroId: String) {
+        startActivity(SuperHeroDetailActivity.getIntent(this, superHeroId))
+    }
     private fun bindData(superHeroes: List<SuperHero>) {
         findViewById<TextView>(R.id.superhero_id_1).text = superHeroes[0].id
         findViewById<TextView>(R.id.superhero_name_1).text = superHeroes[0].name
         findViewById<LinearLayout>(R.id.layout1_superhero).setOnClickListener {
-            val superHero1: SuperHero? = viewModel.itemSelected(superHeroes[0].id)
-            superHero1?.let {
-                Log.d("@dev", "Superheroe seleccionado: $it")
-            }
+            navigateToSuperHeroDetail(superHeroes[0].id)
         }
 
         findViewById<TextView>(R.id.superhero_id_2).text = superHeroes[1].id
         findViewById<TextView>(R.id.superhero_name_2).text = superHeroes[1].name
         findViewById<LinearLayout>(R.id.layout2_superhero).setOnClickListener {
-            val superHero1: SuperHero? = viewModel.itemSelected(superHeroes[1].id)
-            superHero1?.let {
-                Log.d("@dev", "Superheroe seleccionado: $it")
-            }
+            navigateToSuperHeroDetail(superHeroes[1].id)
         }
     }
 
-    private fun testXml() {
-        val xmlDataSource = SuperHeroXmlLocalDataSource(this)
-        val superHero = viewModel.itemSelected("1")
-        superHero?.let {
-            xmlDataSource.save(it)
-        }
-
-        val superHeroSaved = xmlDataSource.findById("1")
-        Log.d("@dev", superHeroSaved.toString())
-    }
+//    private fun testXml() {
+//        val xmlDataSource = SuperHeroXmlLocalDataSource(this)
+//        val superHero = viewModel.viewCreated()
+//        superHero.let { superHero->
+//            xmlDataSource.save(superHero)
+//        }
+//
+//        val superHeroSaved = xmlDataSource.findById("1")
+//        Log.d("@dev", superHeroSaved.toString())
+//    }
 
     private fun testXmlList() {
         val superHeroes = viewModel.viewCreated()

@@ -9,5 +9,5 @@ data class SuperHero(
     val biography: Biography,
     val work: Work,
     val connections: Connections,
-    val images: Images
+    val image: Image
 )

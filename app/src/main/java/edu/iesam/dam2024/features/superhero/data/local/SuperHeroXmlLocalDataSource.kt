@@ -5,7 +5,6 @@ import com.google.gson.Gson
 import edu.iesam.dam2024.features.superhero.domain.Appearance
 import edu.iesam.dam2024.features.superhero.domain.Biography
 import edu.iesam.dam2024.features.superhero.domain.Connections
-import edu.iesam.dam2024.features.superhero.domain.Images
 import edu.iesam.dam2024.features.superhero.domain.PowerStats
 import edu.iesam.dam2024.features.superhero.domain.SuperHero
 import edu.iesam.dam2024.features.superhero.domain.Work
