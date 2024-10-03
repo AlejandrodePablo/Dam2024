@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -18,7 +19,7 @@
             android:name=".features.movies.presentation.MovieDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".features.superhero.presentation.SuperHeroActivity"
+            android:name=".features.superhero.presentation.SuperHeroesActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,6 +29,11 @@
         </activity>
         <activity
             android:name=".features.movies.presentation.MoviesActivity"
+            android:exported="true">
+
+        </activity>
+        <activity
+            android:name=".features.superhero.presentation.SuperHeroDetailActivity"
             android:exported="true">
 
         </activity>
