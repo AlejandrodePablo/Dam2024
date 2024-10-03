@@ -8,8 +8,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import coil.load
 import com.bumptech.glide.Glide
 import edu.iesam.dam2024.R
+import edu.iesam.dam2024.app.extensions.loadUrl
 import edu.iesam.dam2024.features.superhero.domain.SuperHero
 
 class SuperHeroDetailActivity : AppCompatActivity() {
@@ -35,10 +37,7 @@ class SuperHeroDetailActivity : AppCompatActivity() {
 
     private fun bindData(superhero: SuperHero) {
         val imageView = findViewById<ImageView>(R.id.image)
-        Glide
-            .with(imageView)
-            .load(superhero.image.lg)
-            .into(imageView)
+        imageView.loadUrl(superhero.image.lg)
     }
 
     private fun getSuperHeroId(): String? {
