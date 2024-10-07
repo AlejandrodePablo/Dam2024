@@ -5,7 +5,9 @@ import android.util.Log
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import edu.iesam.dam2024.R
+import edu.iesam.dam2024.app.domain.ErrorApp
 import edu.iesam.dam2024.features.superhero.data.local.SuperHeroXmlLocalDataSource
 import edu.iesam.dam2024.features.superhero.domain.SuperHero
 
@@ -17,18 +19,31 @@ class SuperHeroesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_superheroes)
-
         superHeroFactory = SuperHeroFactory(this)
         viewModel = superHeroFactory.buildViewModel()
-
-        val superHeroes = viewModel.viewCreated()
-        bindData(superHeroes)
-        testXmlList()
+        setupObserver()
+        viewModel.viewCreated()
+//        testXmlList()
     }
 
-    private fun navigateToSuperHeroDetail(superHeroId: String) {
-        startActivity(SuperHeroDetailActivity.getIntent(this, superHeroId))
+    private fun setupObserver() {
+        val movieObserver = Observer<SuperHeroesViewModel.UiState> { uiState ->
+            uiState.superHeroes?.let {
+                bindData(it)
+            }
+            uiState.errorApp?.let {
+                //pinto el error
+            }
+            if (uiState.isLoading) {
+                Log.d("@dev", "Cargando...")
+            } else {
+                Log.d("@dev", "Cargado")
+            }
+        }
+        viewModel.uiState.observe(this, movieObserver)
     }
+
+
     private fun bindData(superHeroes: List<SuperHero>) {
         findViewById<TextView>(R.id.superhero_id_1).text = superHeroes[0].id
         findViewById<TextView>(R.id.superhero_name_1).text = superHeroes[0].name
@@ -43,6 +58,20 @@ class SuperHeroesActivity : AppCompatActivity() {
         }
     }
 
+    private fun showError(error: ErrorApp) {
+        when (error) {
+            ErrorApp.DataErrorApp -> TODO()
+            ErrorApp.InternetErrorApp -> TODO()
+            ErrorApp.ServerErrorApp -> TODO()
+            ErrorApp.UnknowErrorApp -> TODO()
+        }
+
+    }
+
+    private fun navigateToSuperHeroDetail(superHeroId: String) {
+        startActivity(SuperHeroDetailActivity.getIntent(this, superHeroId))
+    }
+
 //    private fun testXml() {
 //        val xmlDataSource = SuperHeroXmlLocalDataSource(this)
 //        val superHero = viewModel.viewCreated()
@@ -54,12 +83,12 @@ class SuperHeroesActivity : AppCompatActivity() {
 //        Log.d("@dev", superHeroSaved.toString())
 //    }
 
-    private fun testXmlList() {
-        val superHeroes = viewModel.viewCreated()
-        val xmlDataSource = SuperHeroXmlLocalDataSource(this)
-        xmlDataSource.saveAll(superHeroes)
-
-        val superHeroesFromXml = xmlDataSource.findAll()
-        Log.d("@dev", "$superHeroesFromXml")
-    }
+//    private fun testXmlList() {
+//        val superHeroes = viewModel.viewCreated()
+//        val xmlDataSource = SuperHeroXmlLocalDataSource(this)
+//        xmlDataSource.saveAll(superHeroes)
+//
+//        val superHeroesFromXml = xmlDataSource.findAll()
+//        Log.d("@dev", "$superHeroesFromXml")
+//    }
 }
