@@ -3,8 +3,10 @@ package edu.iesam.dam2024.features.movies.presentation
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import edu.iesam.dam2024.R
 import edu.iesam.dam2024.app.extensions.loadUrl
@@ -20,14 +22,34 @@ class MovieDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_detail)
 
+        setupObserver()
+
         movieFactory = MovieFactory(this)
         viewModel = movieFactory.buildMovieDetailViewModel()
 
         getMovieId()?.let { movieId ->
-            viewModel.viewCreated(movieId)?.let { movie ->
-                bindData(movie)
+            viewModel.viewCreated(movieId)
+        }
+    }
+
+    private fun setupObserver() {
+        val movieObserver = Observer<MovieDetailViewModel.UiState> { uiState ->
+            uiState.movie?.let {
+                bindData(it)
+            }
+            uiState.errorApp?.let {
+                //pinto el error
+            }
+            if (uiState.isLoading) {
+                //muestro el cargando...
+                Log.d("@dev", "Cargando...")
+            } else {
+                //oculto el cargando...
+                Log.d("@dev", "Cargado")
+
             }
         }
+        viewModel.uiState.observe(this, movieObserver)
     }
 
     private fun bindData(movie: Movie) {
