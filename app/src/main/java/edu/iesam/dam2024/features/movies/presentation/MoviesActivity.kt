@@ -5,7 +5,9 @@ import android.util.Log
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import edu.iesam.dam2024.R
+import edu.iesam.dam2024.app.domain.ErrorApp
 import edu.iesam.dam2024.features.movies.domain.Movie
 
 class MoviesActivity : AppCompatActivity() {
@@ -19,14 +21,27 @@ class MoviesActivity : AppCompatActivity() {
 
         movieFactory = MovieFactory(this)
         viewModel = movieFactory.buildViewModel()
-
-        val movies = viewModel.viewCreated()
-        bindData(movies)
+        viewModel.viewCreated()
+        setupObserver()
     }
 
-    private fun navigateToMovieDetail(movieId: String) {
-        startActivity(MovieDetailActivity.getIntent(this, movieId))
+    private fun setupObserver() {
+        val movieObserver = Observer<MoviesViewModel.UiState> { uiState ->
+            uiState.movies?.let {
+                bindData(it)
+            }
+            uiState.errorApp?.let {
+                //pinto el error
+            }
+            if (uiState.isLoading) {
+                //muestro el cargando...
+            } else {
+                //oculto el cargando...
+            }
+        }
+        viewModel.uiState.observe(this, movieObserver)
     }
+
 
     private fun bindData(movies: List<Movie>) {
         findViewById<TextView>(R.id.movie_id_1).text = movies[0].id
@@ -54,4 +69,19 @@ class MoviesActivity : AppCompatActivity() {
         }
 
     }
+
+    private fun showError(error: ErrorApp) {
+        when (error) {
+            ErrorApp.DataErrorApp -> TODO()
+            ErrorApp.InternetErrorApp -> TODO()
+            ErrorApp.ServerErrorApp -> TODO()
+            ErrorApp.UnknowErrorApp -> TODO()
+        }
+    }
+
+    private fun navigateToMovieDetail(movieId: String) {
+        startActivity(MovieDetailActivity.getIntent(this, movieId))
+    }
+
+
 }

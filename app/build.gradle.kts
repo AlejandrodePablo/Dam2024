@@ -46,7 +46,7 @@ dependencies {
     implementation(libs.gson.serializer)
     implementation(libs.glide)
     implementation(libs.coil)
-
+    implementation(libs.viewmodel.scope)
     //Librerías para testing
     testImplementation(libs.junit)
 

@@ -12,6 +12,7 @@ constraintlayout = "2.1.4"
 gson = "2.11.0"
 glide = "4.16.0"
 coil = "2.7.0"
+viewModelScope = "2.8.6"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -25,6 +26,7 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 gson-serializer = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
 coil = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
+viewmodel-scope = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "viewModelScope" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
