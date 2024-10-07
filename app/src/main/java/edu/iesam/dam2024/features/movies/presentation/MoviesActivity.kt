@@ -34,9 +34,10 @@ class MoviesActivity : AppCompatActivity() {
                 //pinto el error
             }
             if (uiState.isLoading) {
-                //muestro el cargando...
+                Log.d("@dev", "Cargando...")
+
             } else {
-                //oculto el cargando...
+                Log.d("@dev", "Cargado")
             }
         }
         viewModel.uiState.observe(this, movieObserver)
