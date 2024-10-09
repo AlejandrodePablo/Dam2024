@@ -24,47 +24,8 @@ class SuperHeroDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_super_hero_detail)
-        superHeroFactory = SuperHeroFactory(this)
-        viewModel = superHeroFactory.buildSuperHeroDetailViewModel()
-        getSuperHeroId()?.let { superHeroId ->
-            viewModel.viewCreated(superHeroId)
-        }
-        setupObserver()
+
     }
 
-    private fun setupObserver() {
-        val movieObserver = Observer<SuperHeroDetailViewModel.UiState> { uiState ->
-            uiState.superHero?.let {
-                bindData(it)
-            }
-            uiState.errorApp?.let {
-                //pinto el error
-            }
-            if (uiState.isLoading) {
-                Log.d("@dev", "Cargando...")
-            } else {
-                Log.d("@dev", "Cargado")
-            }
-        }
-        viewModel.uiState.observe(this, movieObserver)
-    }
 
-    private fun getSuperHeroId(): String? {
-        return intent.getStringExtra(KEY_SUPERHERO_ID)
-    }
-
-    private fun bindData(superhero: SuperHero) {
-        val imageView = findViewById<ImageView>(R.id.image)
-        imageView.loadUrl(superhero.image.lg)
-    }
-
-    companion object {
-        const val KEY_SUPERHERO_ID = "key_superhero_id"
-
-        fun getIntent(context: Context, superHeroId: String): Intent {
-            val intent = Intent(context, SuperHeroDetailActivity::class.java)
-            intent.putExtra(KEY_SUPERHERO_ID, superHeroId)
-            return intent
-        }
-    }
 }

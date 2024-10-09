@@ -6,12 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".features.movies.presentation.MoviesActivity">
+    tools:context=".features.movies.presentation.MovieDetailFragment">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:navGraph="@navigation/nav_graph" />
+    <ImageView
+        android:id="@+id/poster"
+        android:layout_width="64dp"
+        android:layout_height="64dp" />
 
 </LinearLayout>
