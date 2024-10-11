@@ -22,7 +22,6 @@ class SuperHeroDetailViewModel
 
         viewModelScope.launch(Dispatchers.IO) {
             val superHero = getSuperHeroUseCase.invoke(superHeroId)
-            delay(1000)
             _uiState.postValue(UiState(superHero = superHero))
         }
     }

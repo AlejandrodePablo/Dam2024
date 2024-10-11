@@ -13,64 +13,12 @@ import edu.iesam.dam2024.features.superhero.domain.SuperHero
 
 class SuperHeroesActivity : AppCompatActivity() {
 
-    private lateinit var superHeroFactory: SuperHeroFactory
-    private lateinit var viewModel: SuperHeroesViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_superheroes)
-        superHeroFactory = SuperHeroFactory(this)
-        viewModel = superHeroFactory.buildViewModel()
-        setupObserver()
-        viewModel.viewCreated()
-//        testXmlList()
-    }
-
-    private fun setupObserver() {
-        val movieObserver = Observer<SuperHeroesViewModel.UiState> { uiState ->
-            uiState.superHeroes?.let {
-                bindData(it)
-            }
-            uiState.errorApp?.let {
-                //pinto el error
-            }
-            if (uiState.isLoading) {
-                Log.d("@dev", "Cargando...")
-            } else {
-                Log.d("@dev", "Cargado")
-            }
-        }
-        viewModel.uiState.observe(this, movieObserver)
-    }
-
-
-    private fun bindData(superHeroes: List<SuperHero>) {
-        findViewById<TextView>(R.id.superhero_id_1).text = superHeroes[0].id
-        findViewById<TextView>(R.id.superhero_name_1).text = superHeroes[0].name
-        findViewById<LinearLayout>(R.id.layout1_superhero).setOnClickListener {
-            navigateToSuperHeroDetail(superHeroes[0].id)
-        }
-
-        findViewById<TextView>(R.id.superhero_id_2).text = superHeroes[1].id
-        findViewById<TextView>(R.id.superhero_name_2).text = superHeroes[1].name
-        findViewById<LinearLayout>(R.id.layout2_superhero).setOnClickListener {
-            navigateToSuperHeroDetail(superHeroes[1].id)
-        }
-    }
-
-    private fun showError(error: ErrorApp) {
-        when (error) {
-            ErrorApp.DataErrorApp -> TODO()
-            ErrorApp.InternetErrorApp -> TODO()
-            ErrorApp.ServerErrorApp -> TODO()
-            ErrorApp.UnknowErrorApp -> TODO()
-        }
 
     }
 
-    private fun navigateToSuperHeroDetail(superHeroId: String) {
-        startActivity(SuperHeroDetailActivity.getIntent(this, superHeroId))
-    }
 
 //    private fun testXml() {
 //        val xmlDataSource = SuperHeroXmlLocalDataSource(this)

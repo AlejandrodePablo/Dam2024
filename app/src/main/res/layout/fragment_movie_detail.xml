@@ -5,12 +5,12 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.superhero.presentation.SuperHeroDetailActivity">
+    android:orientation="vertical"
+    tools:context=".features.movies.presentation.MovieDetailFragment">
 
     <ImageView
-        android:id="@+id/image"
+        android:id="@+id/poster"
         android:layout_width="64dp"
         android:layout_height="64dp" />
-
 
 </LinearLayout>
