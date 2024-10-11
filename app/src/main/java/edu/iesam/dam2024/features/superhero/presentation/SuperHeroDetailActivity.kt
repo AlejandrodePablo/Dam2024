@@ -9,11 +9,11 @@ class SuperHeroDetailActivity : AppCompatActivity() {
     private lateinit var superHeroFactory: SuperHeroFactory
     private lateinit var viewModel: SuperHeroDetailViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_superhero_detail)
-
-    }
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        setContentView(R.layout.activity_superhero_detail)
+//
+//    }
 
 
 }

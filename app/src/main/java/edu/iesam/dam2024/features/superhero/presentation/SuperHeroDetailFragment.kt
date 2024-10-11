@@ -7,13 +7,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import edu.iesam.dam2024.R
 import edu.iesam.dam2024.app.extensions.loadUrl
-import edu.iesam.dam2024.databinding.FragmentSuperHeroDetailBinding
-import edu.iesam.dam2024.databinding.FragmentSuperheroesBinding
+import edu.iesam.dam2024.databinding.FragmentSuperheroDetailBinding
 import edu.iesam.dam2024.features.superhero.domain.SuperHero
 
 class SuperHeroDetailFragment : Fragment() {
@@ -21,7 +18,7 @@ class SuperHeroDetailFragment : Fragment() {
     private lateinit var superHeroFactory: SuperHeroFactory
     private lateinit var viewModel: SuperHeroDetailViewModel
 
-    private var _binding: FragmentSuperHeroDetailBinding? = null
+    private var _binding: FragmentSuperheroDetailBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -29,7 +26,7 @@ class SuperHeroDetailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentSuperHeroDetailBinding.inflate(inflater, container, false)
+        _binding = FragmentSuperheroDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -68,13 +65,13 @@ class SuperHeroDetailFragment : Fragment() {
         binding.image.loadUrl(superhero.image.lg)
     }
 
-    companion object {
-        const val KEY_SUPERHERO_ID = "key_superhero_id"
-
-        fun getIntent(context: Context, superHeroId: String): Intent {
-            val intent = Intent(context, SuperHeroDetailActivity::class.java)
-            intent.putExtra(KEY_SUPERHERO_ID, superHeroId)
-            return intent
-        }
-    }
+//    companion object {
+//        const val KEY_SUPERHERO_ID = "key_superhero_id"
+//
+//        fun getIntent(context: Context, superHeroId: String): Intent {
+//            val intent = Intent(context, SuperHeroDetailActivity::class.java)
+//            intent.putExtra(KEY_SUPERHERO_ID, superHeroId)
+//            return intent
+//        }
+//    }
 }

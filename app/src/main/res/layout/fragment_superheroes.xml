@@ -5,9 +5,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     android:orientation="vertical"
-    tools:context=".features.superhero.presentation.SuperHeroesActivity"
-    android:background="@color/black">
+    tools:context=".features.superhero.presentation.SuperHeroesActivity">
 
     <LinearLayout
         android:id="@+id/layout1_superhero"
@@ -21,14 +21,14 @@
             android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
+            android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold"
-            tools:text="1"
-            android:textColor="#FFFFFF" />
+            tools:text="1" />
 
         <TextView
             android:id="@+id/superhero_name_1"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
@@ -52,10 +52,10 @@
             android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
+            android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold"
-            tools:text="2"
-            android:textColor="#FFFFFF">
+            tools:text="2">
 
         </TextView>
 
