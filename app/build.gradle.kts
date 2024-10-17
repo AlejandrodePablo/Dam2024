@@ -53,7 +53,10 @@ dependencies {
     implementation(libs.viewmodel.scope)
     implementation(libs.nav.ui.ktx)
     implementation(libs.nav.fragment.ktx)
+    implementation(libs.retro)
+    implementation(libs.gson.retro)
     api(libs.nav.fragment.ktx)
+
 
     //Librerías para testing
     testImplementation(libs.junit)
