@@ -1,7 +1,5 @@
 package edu.iesam.dam2024.features.superhero.presentation
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -41,7 +39,7 @@ class SuperHeroDetailFragment : Fragment() {
     }
 
     private fun setupObserver() {
-        val movieObserver = Observer<SuperHeroDetailViewModel.UiState> { uiState ->
+        val superHeroObserver = Observer<SuperHeroDetailViewModel.UiState> { uiState ->
             uiState.superHero?.let {
                 bindData(it)
             }
@@ -54,7 +52,7 @@ class SuperHeroDetailFragment : Fragment() {
                 Log.d("@dev", "Cargado")
             }
         }
-        viewModel.uiState.observe(viewLifecycleOwner, movieObserver)
+        viewModel.uiState.observe(viewLifecycleOwner, superHeroObserver)
     }
 
     private fun getSuperHeroId(): String? {

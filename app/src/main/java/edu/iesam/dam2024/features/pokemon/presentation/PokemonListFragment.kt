@@ -1,13 +1,16 @@
 package edu.iesam.dam2024.features.pokemon.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import edu.iesam.dam2024.databinding.FragmentPokemonListBinding
+import edu.iesam.dam2024.features.pokemon.data.remote.PokemonMockRemoteDataSource
 import edu.iesam.dam2024.features.pokemon.domain.Pokemon
 
 class PokemonListFragment : Fragment() {
@@ -18,12 +21,15 @@ class PokemonListFragment : Fragment() {
     private lateinit var factory: PokemonFactory
     private lateinit var viewModel: PokemonListViewModel
 
+    private val pokemonAdapter = PokemonAdapter()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentPokemonListBinding.inflate(inflater, container, false)
+        setupView()
         return binding.root
     }
 
@@ -31,14 +37,14 @@ class PokemonListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         factory = PokemonFactory(requireContext())
         viewModel = factory.getPokemonListViewModel()
-        setupObserver()
         viewModel.loadPokemonList()
+        setupObserver()
     }
 
     private fun setupObserver() {
         val observer = Observer<PokemonListViewModel.UiState> { uiState ->
             uiState.pokemons?.let { pokemons ->
-                binData(pokemons)
+                pokemonAdapter.submitList(pokemons)
             }
 
             uiState.errorApp?.let {
@@ -49,47 +55,27 @@ class PokemonListFragment : Fragment() {
             }
 
             if (uiState.isLoading) {
-                //Muestra cargando
+                Log.d("@dev", "Cargando...")
             } else {
-                //Oculto mensaje
+                Log.d("@dev", "Cargado")
             }
         }
         viewModel.uiState.observe(viewLifecycleOwner, observer)
     }
 
-    private fun binData(pokemons: List<Pokemon>) {
-
+    private fun setupView() {
         binding.apply {
-            pkmn1.apply {
-                text = pokemons[0].name
-                setOnClickListener {
-                    navigateToDetails(pokemons[0].id)
-                }
-            }
-        }
-
-        binding.apply {
-            pkmn2.apply {
-                text = pokemons[1].name
-                setOnClickListener {
-                    navigateToDetails(pokemons[1].id)
-                }
-            }
-        }
-
-        binding.apply {
-            pkmn3.apply {
-                text = pokemons[2].name
-                setOnClickListener {
-                    navigateToDetails(pokemons[2].id)
-                }
-            }
+            recyclerViewPokemon.layoutManager = LinearLayoutManager(
+                requireContext(),
+                LinearLayoutManager.VERTICAL,
+                false
+            )
+            recyclerViewPokemon.adapter = pokemonAdapter
         }
     }
 
-    private fun navigateToDetails(pokemonId: String) {
-        findNavController().navigate(
-            PokemonListFragmentDirections.actionFromPkmnToPkmnDetail(pokemonId)
-        )
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
