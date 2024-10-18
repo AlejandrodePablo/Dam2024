@@ -19,9 +19,6 @@
         android:id="@+id/superhero_detail_fragment"
         android:name="edu.iesam.dam2024.features.superhero.presentation.SuperHeroDetailFragment"
         tools:layout="@layout/fragment_superhero_detail">
-        <action
-            android:id="@+id/action_from_superhero_detail_to_superhero"
-            app:destination="@+id/superhero_fragment" />
 
         <argument
             android:name="superHeroId"

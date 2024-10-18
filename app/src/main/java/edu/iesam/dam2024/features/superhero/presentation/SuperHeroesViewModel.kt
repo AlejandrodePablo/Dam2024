@@ -24,12 +24,10 @@ class SuperHeroesViewModel(
 
         viewModelScope.launch(Dispatchers.IO) {
             val superHeroes = getSuperHeroesUseCase.invoke()
-            delay(5000)
             _uiState.postValue(UiState(superHeroes = superHeroes))
 
         }
     }
-
 
     data class UiState(
         val isLoading: Boolean = false,
