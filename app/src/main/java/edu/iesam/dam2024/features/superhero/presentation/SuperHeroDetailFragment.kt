@@ -64,7 +64,7 @@ class SuperHeroDetailFragment : Fragment() {
 
     private fun bindData(superhero: SuperHero) {
         binding.apply {
-//            ivSuperHeroImage.loadUrl(superhero.images.xs)
+            ivSuperHeroImage.loadUrl(superhero.images.xs)
             tvSuperHeroName.text = superhero.name
             tvSuperHeroId.text = superhero.id
             tvSuperHeroSlug.text = superhero.slug
