@@ -7,9 +7,10 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/ivSuperHeroImage"
+        android:id="@+id/superhero_image"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_marginTop="50dp"
         android:contentDescription="Superhero Image"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,39 +19,42 @@
 
     <!-- Nombre del Superhéroe -->
     <TextView
-        android:id="@+id/tvSuperHeroName"
+        android:id="@+id/name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:gravity="center"
         android:textColor="@android:color/black"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivSuperHeroImage" />
+        app:layout_constraintTop_toBottomOf="@id/superhero_image" />
 
     <!-- ID y Slug -->
     <TextView
-        android:id="@+id/tvSuperHeroId"
+        android:id="@+id/superhero_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:textColor="@android:color/darker_gray"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvSuperHeroName" />
+        app:layout_constraintTop_toBottomOf="@id/name" />
 
     <TextView
-        android:id="@+id/tvSuperHeroSlug"
+        android:id="@+id/slug"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:textColor="@android:color/darker_gray"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvSuperHeroName" />
+        app:layout_constraintTop_toBottomOf="@id/name" />
 
     <!-- PowerStats -->
     <TextView
-        android:id="@+id/tvPowerStats"
+        android:id="@+id/power_stats"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -58,11 +62,11 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvSuperHeroId" />
+        app:layout_constraintTop_toBottomOf="@id/superhero_id" />
 
     <!-- Appearance -->
     <TextView
-        android:id="@+id/tvAppearance"
+        android:id="@+id/appearance"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -70,11 +74,11 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvPowerStats" />
+        app:layout_constraintTop_toBottomOf="@id/power_stats" />
 
     <!-- Biography -->
     <TextView
-        android:id="@+id/tvBiography"
+        android:id="@+id/biography"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -82,11 +86,11 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvAppearance" />
+        app:layout_constraintTop_toBottomOf="@id/appearance" />
 
     <!-- Work -->
     <TextView
-        android:id="@+id/tvWork"
+        android:id="@+id/work"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -94,11 +98,11 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvBiography" />
+        app:layout_constraintTop_toBottomOf="@id/biography" />
 
     <!-- Connections -->
     <TextView
-        android:id="@+id/tvConnections"
+        android:id="@+id/connections"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -106,6 +110,6 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvWork" />
+        app:layout_constraintTop_toBottomOf="@id/work" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
