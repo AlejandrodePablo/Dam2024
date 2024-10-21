@@ -18,25 +18,4 @@ class SuperHeroesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_superheroes)
 
     }
-
-
-//    private fun testXml() {
-//        val xmlDataSource = SuperHeroXmlLocalDataSource(this)
-//        val superHero = viewModel.viewCreated()
-//        superHero.let { superHero->
-//            xmlDataSource.save(superHero)
-//        }
-//
-//        val superHeroSaved = xmlDataSource.findById("1")
-//        Log.d("@dev", superHeroSaved.toString())
-//    }
-
-//    private fun testXmlList() {
-//        val superHeroes = viewModel.viewCreated()
-//        val xmlDataSource = SuperHeroXmlLocalDataSource(this)
-//        xmlDataSource.saveAll(superHeroes)
-//
-//        val superHeroesFromXml = xmlDataSource.findAll()
-//        Log.d("@dev", "$superHeroesFromXml")
-//    }
 }

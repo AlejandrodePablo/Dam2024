@@ -20,6 +20,12 @@
             android:name=".features.pokemon.presentation.PokemonActivity"
             android:exported="true">
 
+
+        </activity>
+
+        <activity
+            android:name=".features.superhero.presentation.SuperHeroesActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,10 +33,6 @@
             </intent-filter>
 
         </activity>
-
-        <activity
-            android:name=".features.superhero.presentation.SuperHeroesActivity"
-            android:exported="true"></activity>
 
     </application>
 

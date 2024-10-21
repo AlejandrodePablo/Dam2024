@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.navArgs
 import edu.iesam.dam2024.app.extensions.loadUrl
 import edu.iesam.dam2024.databinding.FragmentSuperheroDetailBinding
 import edu.iesam.dam2024.features.superhero.domain.SuperHero
@@ -19,6 +20,7 @@ class SuperHeroDetailFragment : Fragment() {
     private var _binding: FragmentSuperheroDetailBinding? = null
     private val binding get() = _binding!!
 
+    private val superheroArgs: SuperHeroDetailFragmentArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,6 +38,7 @@ class SuperHeroDetailFragment : Fragment() {
             viewModel.viewCreated(it)
         }
         setupObserver()
+        superheroArgs.superHeroId
     }
 
     private fun setupObserver() {
@@ -56,20 +59,16 @@ class SuperHeroDetailFragment : Fragment() {
     }
 
     private fun getSuperHeroId(): String? {
-        return "1"
+        return superheroArgs.superHeroId
     }
 
     private fun bindData(superhero: SuperHero) {
-        binding.image.loadUrl(superhero.image.lg)
+        binding.apply {
+//            ivSuperHeroImage.loadUrl(superhero.images.xs)
+            tvSuperHeroName.text = superhero.name
+            tvSuperHeroId.text = superhero.id
+            tvSuperHeroSlug.text = superhero.slug
+        }
     }
 
-//    companion object {
-//        const val KEY_SUPERHERO_ID = "key_superhero_id"
-//
-//        fun getIntent(context: Context, superHeroId: String): Intent {
-//            val intent = Intent(context, SuperHeroDetailActivity::class.java)
-//            intent.putExtra(KEY_SUPERHERO_ID, superHeroId)
-//            return intent
-//        }
-//    }
 }
