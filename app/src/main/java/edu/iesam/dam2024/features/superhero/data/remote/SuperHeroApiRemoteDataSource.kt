@@ -3,7 +3,6 @@ package edu.iesam.dam2024.features.superhero.data.remote
 import edu.iesam.dam2024.features.superhero.domain.Appearance
 import edu.iesam.dam2024.features.superhero.domain.Biography
 import edu.iesam.dam2024.features.superhero.domain.Connections
-import edu.iesam.dam2024.features.superhero.domain.Images
 import edu.iesam.dam2024.features.superhero.domain.PowerStats
 import edu.iesam.dam2024.features.superhero.domain.SuperHero
 import edu.iesam.dam2024.features.superhero.domain.Work
@@ -13,7 +12,9 @@ class SuperHeroApiRemoteDataSource(private val superHeroService: SuperHeroServic
     suspend fun getSuperHeroes(): List<SuperHero> {
         val response = superHeroService.requestSuperHeroes()
         if (response.isSuccessful) {
-            return response.body()!!
+            return response.body()!!.map {
+                it.toModel()
+            }
         } else {
             return emptyList()
         }
@@ -22,7 +23,7 @@ class SuperHeroApiRemoteDataSource(private val superHeroService: SuperHeroServic
     suspend fun getSuperHero(superheroId: String): SuperHero {
         val response = superHeroService.requestSuperHero(superheroId)
         if (response.isSuccessful) {
-            return response.body()!!
+            return response.body()!!.toModel()
         } else {
             return SuperHero(
                 id = "Error",
@@ -55,18 +56,13 @@ class SuperHeroApiRemoteDataSource(private val superHeroService: SuperHeroServic
                 ),
                 work = Work(
                     occupation = "error",
-                    base = "-"
+                    base = "error"
                 ),
                 connections = Connections(
                     groupAffiliation = "error",
                     relatives = "error"
                 ),
-                images = Images(
-                    "error",
-                    "error",
-                    "error",
-                    "error"
-                )
+                images = "error"
             )
         }
     }

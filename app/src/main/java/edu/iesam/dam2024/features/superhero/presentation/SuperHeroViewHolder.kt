@@ -13,7 +13,7 @@ class SuperHeroViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
     fun bind(model: SuperHero) {
         binding = ViewSuperheroItemBinding.bind(view)
         binding.apply {
-            image.loadUrl(model.images.lg)
+            image.loadUrl(model.images)
             name.text = model.name
             superheroViewLayout.setOnClickListener {
                 navigateToDetails(model.id)

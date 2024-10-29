@@ -64,10 +64,14 @@ class SuperHeroDetailFragment : Fragment() {
 
     private fun bindData(superhero: SuperHero) {
         binding.apply {
-            superheroImage.loadUrl(superhero.images.lg)
+            superheroImage.loadUrl(superhero.images)
             name.text = superhero.name
             superheroId.text = superhero.id
             slug.text = superhero.slug
+            appearance.text = superhero.appearance.toString()
+            biography.text = superhero.biography.toString()
+            work.text = superhero.work.toString()
+            connections.text = superhero.connections.toString()
         }
     }
 
