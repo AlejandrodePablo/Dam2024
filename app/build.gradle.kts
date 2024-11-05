@@ -2,16 +2,17 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.navigation.safeargs.kotlin)
+    alias(libs.plugins.ksp)
 }
 
 android {
     namespace = "edu.iesam.dam2024"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "edu.iesam.dam2024"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -57,6 +58,16 @@ dependencies {
     implementation(libs.gson.retro)
     api(libs.nav.fragment.ktx)
 
+    //Librerias de DI (kotlin)
+    implementation(project.dependencies.platform(libs.koin.bom))
+    implementation(libs.koin.android)
+    implementation(libs.koin.annotations)
+
+    //KSP
+    ksp(libs.koin.ksp)
+
+    //okhttp
+    implementation(libs.okhttp.log.interceptor)
 
     //Librerías para testing
     testImplementation(libs.junit)
@@ -64,4 +75,8 @@ dependencies {
     //Librerías para Android-testing
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+}
+ksp {
+    arg("KOIN_CONFIG_CHECK", "true")
 }

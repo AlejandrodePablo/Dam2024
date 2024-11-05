@@ -8,22 +8,21 @@ import edu.iesam.dam2024.app.domain.ErrorApp
 import edu.iesam.dam2024.features.movies.domain.GetMoviesUseCase
 import edu.iesam.dam2024.features.movies.domain.Movie
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import org.koin.android.annotation.KoinViewModel
 
+@KoinViewModel
 class MoviesViewModel(
-    private val getMoviesUseCase: GetMoviesUseCase,
-
-    ) : ViewModel() {
+    private val getMoviesUseCase: GetMoviesUseCase
+) : ViewModel() {
 
     private val _uiState = MutableLiveData<UiState>()
     val uiState: LiveData<UiState> = _uiState
 
     fun viewCreated() {
+        _uiState.value = (UiState(isLoading = true))
         viewModelScope.launch(Dispatchers.IO) {
             val movies = getMoviesUseCase.invoke()
-            //postValue origen: Default, IO, Main destino: Main
             _uiState.postValue(UiState(movies = movies))
         }
     }
